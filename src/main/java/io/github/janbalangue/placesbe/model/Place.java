@@ -33,10 +33,7 @@ public class Place {
     }
 
     public String getPriceLevel() {
-        if (this.priceLevel != null) {
-            return this.priceLevel;
-        }
-        return null;
+        return (this.priceLevel != null) ? this.priceLevel : null;
     }
 }
 
