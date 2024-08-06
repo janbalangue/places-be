@@ -24,7 +24,8 @@ public class PlacesController {
     @GetMapping(value = "/{textQuery}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> getPlaces(@PathVariable("textQuery") String textQuery) {
         Logger.info("Processing text query: {}", textQuery);
-        Map<String, Object> places = placesService.getPlaces(textQuery);
+        String url = "https://places.googleapis.com/v1/places:searchText";
+        Map<String, Object> places = placesService.getPlaces(textQuery, url);
         Logger.info("Text query succeeded");
         HttpHeaders headers = new HttpHeaders();
         headers.add("Access-Control-Allow-Origin", "*");

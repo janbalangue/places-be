@@ -16,14 +16,13 @@ import java.util.Map;
 public class PlacesService {
     private final String placesApiKey;
     private final ObjectMapper objectMapper;
-
     public PlacesService(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
         Dotenv dotenv = Dotenv.load();
         placesApiKey = dotenv.get("PLACES_API_KEY");
     }
 
-    public Map<String, Object> getPlaces(String query) throws ClassCastException {
+    public Map<String, Object> getPlaces(String query, String url) throws ClassCastException {
         Logger.info("Requesting places: {}", query);
         ObjectNode rootNode = objectMapper.createObjectNode();
         rootNode.put("textQuery", query);
@@ -32,7 +31,7 @@ public class PlacesService {
             httpHeaders.add("X-Goog-Api-Key", placesApiKey);
             httpHeaders.add("X-Goog-FieldMask", "places.displayName,places.formattedAddress,places.priceLevel,places.websiteUri");
         }).build();
-        URI uri = URI.create("https://places.googleapis.com/v1/places:searchText");
+        URI uri = URI.create(url);
         JsonNode response = restClient.post()
                 .uri(uri)
                 .body(rootNode)
