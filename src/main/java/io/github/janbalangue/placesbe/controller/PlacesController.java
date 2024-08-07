@@ -26,6 +26,7 @@ public class PlacesController {
         Logger.info("Processing text query: {}", textQuery);
         String url = "https://places.googleapis.com/v1/places:searchText";
         Map<String, Object> places = placesService.getPlaces(textQuery, url);
+        Logger.debug("Places returned: {}", places);
         Logger.info("Text query succeeded");
         HttpHeaders headers = new HttpHeaders();
         headers.add("Access-Control-Allow-Origin", "*");
