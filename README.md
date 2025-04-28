@@ -1,2 +1,2 @@
 # places-be
-This backend Spring Boot service calls the Google Maps Places API and returns the results to the Nucamp React portfolio project, Near Me App.
+This backend Spring Boot service exists to protect the API key for Google Maps, returning responses to the Near Me App.
